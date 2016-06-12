@@ -1,7 +1,7 @@
 {  
-   "databaseUrl":"jdbc:mysql://localhost:3306/clashofroyal",
+   "databaseUrl":"jdbc:mysql://localhost:3306/clashofroyal?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false",
    "databaseUser":"adminroyal",
-   "databasePassword":"mQQ3LTqqpB6ZEhhS",
+   "databasePassword":"**********",
    "requestHeader":{  
       "Host":"clashroyalearena.com",
 	  "Pragma":"no-cache"

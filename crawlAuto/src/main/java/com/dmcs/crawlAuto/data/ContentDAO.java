@@ -47,6 +47,9 @@ public class ContentDAO {
 				preparedStmt.setString(8, content.getSlug());
 				preparedStmt.setString(9, content.getCreateDate());
 				preparedStmt.setInt(10, content.getActive());
+				
+				logger.debug("Title: " + content.getTitle());
+				logger.debug("Content: " + content.getContent());
 
 				preparedStmt.addBatch();
 				i++;
