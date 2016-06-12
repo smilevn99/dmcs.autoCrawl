@@ -1,7 +1,7 @@
 {  
-   "databaseUrl":"asdfsdf",
-   "databaseUser":"",
-   "databasePassword":"",
+   "databaseUrl":"jdbc:mysql://localhost:3306/clashofroyal",
+   "databaseUser":"adminroyal",
+   "databasePassword":"mQQ3LTqqpB6ZEhhS",
    "requestHeader":{  
       "Host":"clashroyalearena.com",
 	  "Pragma":"no-cache"
