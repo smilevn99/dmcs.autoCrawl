@@ -4,11 +4,12 @@ import java.util.Map;
 
 public class ConfigMapping {
 
-	private String databaseConnection;
+	private String databaseUrl;
+	private String databaseUser;
+	private String databasePassword;
 	private Map<String, String> requestHeader;
 
 	private String categoryName;
-	private int categoryTotalPage;
 	private String categoryRootLink;
 
 	private String element;
@@ -20,6 +21,30 @@ public class ConfigMapping {
 	private String content;
 	private String contentContainer;
 	private String createDate;
+
+	public String getDatabaseUrl() {
+		return databaseUrl;
+	}
+
+	public void setDatabaseUrl(String databaseUrl) {
+		this.databaseUrl = databaseUrl;
+	}
+
+	public String getDatabaseUser() {
+		return databaseUser;
+	}
+
+	public void setDatabaseUser(String databaseUser) {
+		this.databaseUser = databaseUser;
+	}
+
+	public String getDatabasePassword() {
+		return databasePassword;
+	}
+
+	public void setDatabasePassword(String databasePassword) {
+		this.databasePassword = databasePassword;
+	}
 
 	public String getCategoryRootLink() {
 		return categoryRootLink;
@@ -85,14 +110,6 @@ public class ConfigMapping {
 		this.createDate = createDate;
 	}
 
-	public String getDatabaseConnection() {
-		return databaseConnection;
-	}
-
-	public void setDatabaseConnection(String databaseConnection) {
-		this.databaseConnection = databaseConnection;
-	}
-
 	public String getElement() {
 		return element;
 	}
@@ -123,13 +140,5 @@ public class ConfigMapping {
 
 	public void setRequestHeader(Map<String, String> requestHeader) {
 		this.requestHeader = requestHeader;
-	}
-
-	public int getCategoryTotalPage() {
-		return categoryTotalPage;
-	}
-
-	public void setCategoryTotalPage(int categoryTotalPage) {
-		this.categoryTotalPage = categoryTotalPage;
 	}
 }

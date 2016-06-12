@@ -6,7 +6,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dmcs.crawlAuto.contract.Category;
 import com.dmcs.crawlAuto.contract.ConfigMapping;
+import com.dmcs.crawlAuto.data.CategoryDAO;
+import com.dmcs.crawlAuto.data.ContentDAO;
 import com.dmcs.crawlAuto.engines.CrawlEngine;
 import com.dmcs.crawlAuto.engines.JsonEngine;
 
@@ -41,7 +44,19 @@ public class RunMe {
 
 			if (configMapping != null) {
 				CrawlEngine crawlEngine = new CrawlEngine(configMapping);
-				crawlEngine.doCrawl();
+				Category cate = crawlEngine.doCrawl();
+
+				CategoryDAO categoryDAO = new CategoryDAO(configMapping.getDatabaseUrl(),
+						configMapping.getDatabaseUser(), configMapping.getDatabasePassword());
+				categoryDAO.addCategory(cate);
+
+				cate.getContents().forEach(content -> {
+					content.setCategoryId(cate.getCategoryId());
+				});
+
+				ContentDAO contentDAO = new ContentDAO(configMapping.getDatabaseUrl(), configMapping.getDatabaseUser(),
+						configMapping.getDatabasePassword());
+				contentDAO.addContents(cate.getContents());
 			}
 		});
 	}

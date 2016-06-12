@@ -27,33 +27,46 @@ public class CrawlEngine {
 	public Category doCrawl() {
 		Category category = new Category();
 		category.setCategoryName(configMapping.getCategoryName());
-
+		category.setRootLink(StringUtils.replace(configMapping.getCategoryRootLink(), "{pageNumber}", ""));
+		category.setActive(1);
+		category.setStatus(0);
+		category.setCateSlug(SlugUtils.toSlug(configMapping.getCategoryName()));
+		
 		List<Content> contentList = new ArrayList<Content>();
 		category.setContents(contentList);
-		
-		try {
-			for (int i = 1; i <= configMapping.getCategoryTotalPage();i++) {
+
+		Connection.Response response = null;
+		int i = 1;
+
+		while(true) {
+			try {
 				String link = StringUtils.replace(configMapping.getCategoryRootLink(), "{pageNumber}", i + "");
+				response = getJsoupConnection(link).ignoreHttpErrors(true).execute();
 				
-				Document doc = getJsoupConnection(link).get();
-				Elements elements = doc.select(configMapping.getElement());
+				if ((response == null || response.statusCode() != 200)) {
+					return category;
+				}	
+				
+				Elements elements = response.parse().select(configMapping.getElement());
 				if (elements == null) {
-					return null;
+					return category;
 				}
-				
+
 				elements.forEach(e -> {
 					contentList.add(getContentElement(e));
 				});
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 
-		return category;
+			i++;
+		}
 	}
 
 	private Content getContentElement(Element element) {
 		Content contentObj = new Content();
+		contentObj.setActive(1);
+		contentObj.setStatus(1);
 
 		try {
 			String title = element.select(configMapping.getTitle()).first().text();

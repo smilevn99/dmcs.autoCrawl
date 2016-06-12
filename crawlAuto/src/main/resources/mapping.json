@@ -1,11 +1,12 @@
 {  
-   "databaseConnection":"asdfsdf",
+   "databaseUrl":"asdfsdf",
+   "databaseUser":"",
+   "databasePassword":"",
    "requestHeader":{  
       "Host":"clashroyalearena.com",
 	  "Pragma":"no-cache"
    },
    "categoryName":"Decks",
-   "categoryTotalPage":1,
    "categoryRootLink":"http://clashroyalearena.com/deck-building/page/{pageNumber}",
    "element":"div[class='latestPost excerpt']",
    "title":"h2 a",
